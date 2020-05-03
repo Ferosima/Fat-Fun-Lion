@@ -30,9 +30,9 @@ public class GameView extends View {
     Boolean click = false;
     //  Boolean timer_game_text = true;
     int w, h;
-    int time = 10000;
+    int time = 120000;
     int time_timer = time;
-    int number_of_antelope = 0, need_antelope = 10;
+    int number_of_antelope = 0, need_antelope = 35;
     int number_of_draw_antelope;
     int number;
     public CountDownTimer timer_start, timer_game, timer_sleep_lion, timer_end;
@@ -163,6 +163,7 @@ public class GameView extends View {
                         timer_end_run=true;
                         is_game_run=false;
                         textView.setVisibility(INVISIBLE);
+                        textView_start.setVisibility(VISIBLE);
                     }
                     invalidate();
                 }
@@ -208,7 +209,7 @@ public class GameView extends View {
                 }
 
                 public void onFinish() {
-                    is_menu_run = true;
+                    mListener.goToMain();
                     invalidate();
                     //вызов интерфейса или же отрисовка меню с повтором и выходом
                 }
@@ -266,6 +267,7 @@ public class GameView extends View {
         if (is_menu_run) {
             //draw button retry and exit(need interface)
             //
+            textView_start.setText("Time's up. Try again.");
         }
         invalidate();
     }
